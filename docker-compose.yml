@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+
+  web:
+    build:
+      context: ./webServer
+      args:
+        PATH_APACHE2_SECURITY_CONFIG: ${PATH_APACHE2_SECURITY_CONFIG}
+        PATH_APACHE2_CONFIG: ${PATH_APACHE2_CONFIG}
+        PATH_PHP_INI_CONFIG: ${PATH_PHP_INI_CONFIG}
+        PATH_VHOST_CONFIG_DEFAULT: ${PATH_VHOST_CONFIG_DEFAULT}
+    container_name: app
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "8443:443"
+    volumes:
+    - ${PROYECT_ROOT}:/var/www
+
+
+
