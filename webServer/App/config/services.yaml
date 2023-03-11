@@ -1,6 +1,4 @@
-imports:
-    - { resource: '../src/Shared/Cache/Resources/config/service.yaml' }
-    - { resource: '../src/Dispenser/Resources/config/service.yaml' }
+
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
@@ -35,3 +33,48 @@ services:
             - method: setContainer
               arguments: [ '@service_container' ]
 
+    App\Dispenser\Infrastructure\DispenserRepository\ApcDispenserRepo:
+        class: App\Dispenser\Infrastructure\DispenserRepository\ApcDispenserRepo
+        factory: ['App\Dispenser\Infrastructure\DispenserRepository\ApcDispenserRepo', 'getInstance']
+        arguments: ['@app.apc_service', '%default_apc_ttl%']
+        public: true
+        autowire: false
+
+    app.dispenser_repository:
+        alias: App\Dispenser\Infrastructure\DispenserRepository\ApcDispenserRepo
+
+    App\Dispenser\Application\CreateDispenser:
+        class: App\Dispenser\Application\CreateDispenser
+        arguments: ['@app.dispenser_repository']
+
+    App\Dispenser\Domain\Contracts\IDispenserRepository: '@app.dispenser_repository'
+
+    App\Dispenser\Application\Finder\FindDispenserById:
+        class: App\Dispenser\Application\Finder\FindDispenserById
+        arguments: ['@App\Dispenser\Infrastructure\DispenserRepository\ApcDispenserRepo']
+
+    App\Dispenser\Application\UpdateDispenserStatus:
+        class: App\Dispenser\Application\UpdateDispenserStatus
+        arguments: ['@app.dispenser_repository']
+
+    App\Dispenser\Application\AmountSpent:
+        class: App\Dispenser\Application\AmountSpent
+        arguments: ['@App\Dispenser\Application\Finder\FindDispenserById']
+
+    App\Dispenser\Infrastructure\Responses\DispenserWithOutStateResponse:
+        class: App\Dispenser\Infrastructure\Responses\DispenserWithOutStateResponse
+        arguments: []
+
+    app.dispenser_with_out_state_response:
+        alias: App\Dispenser\Infrastructure\Responses\DispenserWithOutStateResponse
+
+    App\Dispenser\Domain\Contracts\IFormatDispenserResponse: '@app.dispenser_with_out_state_response'
+
+    App\Shared\Cache\Apc\Infrastructure\Apc:
+        class: App\Shared\Cache\Apc\Infrastructure\Apc
+        arguments: [ ]
+
+    app.apc_service:
+        alias: App\Shared\Cache\Apc\Infrastructure\Apc
+
+    App\Shared\Cache\Apc\Domain\Contracts\IApcService: '@app.apc_service'
