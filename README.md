@@ -1,6 +1,7 @@
 # Beer-tap-dispenser-API
 Beer tap dispenser API Taxonomy.
 under `webServer/App/src` live the code, this is separated by "modules", in turn each module is separated by "abstraction layers"
+
 ![img.png](img/src.png)
 
     Controller: represent the entry point. given a request provide a response
