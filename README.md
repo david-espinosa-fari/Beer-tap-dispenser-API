@@ -1,6 +1,13 @@
 # Beer-tap-dispenser-API
-Beer tap dispenser API
+Beer tap dispenser API Taxonomy.
+under `webServer/App/src` live the code, this is separated by "modules", in turn each module is separated by "abstraction layers"
+![img.png](img/src.png)
 
+    Controller: represent the entry point. given a request provide a response
+    Application: It is in charge to represent in transactional way the use cases
+    Domain: Contain the business rules to this "module"
+    Infrastructure: are the concrete implementations for specifics 3erd party software or modified nature responses from the domain
+    under Shared lives the necesary code to use by all the modules
 # Getting Started
 * Clone project
 
@@ -24,9 +31,13 @@ Beer tap dispenser API
             }'
          2. I think, is too much work generate a OpenApi doc for the scope of this task, you can use the full [postman](https://www.postman.com/downloads/) collection that lives under `webServer/App/doc`, there you will find the collection and the environment to use.
 ### Related to tests
+Test lives under `webServer/App/tests` and renders the folder hierarchy from src/
+
+![img_1.png](img/tests.png)
+
 #### Coverage Statistic
+![img.png](img/coverage.png)
 ![img_1.png](img/img_1.png)
-![img.png](img/img.png)
 You can find the entire statistics under `webServer/App/public/cover/index.html`
 #### Running tests
 The test are separated by nature, related to Integration or unitary to favor "pipelines"
