@@ -15,8 +15,6 @@ services:
     ports:
       - "80:80"
       - "8443:443"
-    volumes:
-    - ${PROYECT_ROOT}:/var/www
 
 
 
