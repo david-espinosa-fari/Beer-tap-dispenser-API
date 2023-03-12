@@ -84,5 +84,7 @@ COPY $PATH_APACHE2_CONFIG /etc/apache2/apache2.conf
 COPY $PATH_VHOST_CONFIG_DEFAULT /etc/apache2/sites-enabled/000-default.conf
 COPY $PATH_PHP_INI_CONFIG /usr/local/etc/php/php.ini
 
-RUN chown www-data:www-data -Rv /var/www/var/
-RUN curl -sS https://get.symfony.com/cli/installer | bash -s - --install-dir /usr/local/bin
+COPY App/ /var/www
+RUN /usr/local/bin/composer install
+COPY App/.env.dist /var/www/.env
+RUN chown www-data:www-data -Rv /var/www/
