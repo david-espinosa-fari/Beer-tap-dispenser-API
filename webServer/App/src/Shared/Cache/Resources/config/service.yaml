@@ -1,7 +1,0 @@
-services:
-  App\Shared\Cache\Apc\Infrastructure\Apc:
-    class: App\Shared\Cache\Apc\Infrastructure\Apc
-    arguments: []
-
-  app.apc_service:
-    alias: App\Shared\Cache\Apc\Infrastructure\Apc
