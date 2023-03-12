@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "bbdd80e7-7eb5-42ff-9e83-495d6f71afa9",
+		"name": "Beer tap dispenser",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17842126"
+	},
+	"item": [
+		{
+			"name": "CreateDispenser",
+			"item": [
+				{
+					"name": "POST dispenser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"jsonData = pm.response.json();\r",
+									"pm.environment.set('dispenserId', jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"flow_volume\": 0.0653\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/dispenser",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dispenser"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST dispenser",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"flow_volume\": 0.0653\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/dispenser",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dispenser"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 11 Mar 2023 18:13:44 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "sameorigin"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"25efd959-8313-40c8-b1d4-c4d74dfa9a37\",\n    \"flow_volume\": 0.0653\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "update status",
+			"item": [
+				{
+					"name": "Update dispenser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.environment.get('dispenserId');"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"open\",\n  \"updated_at\": null\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/dispenser/{{dispenserId}}/status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dispenser",
+								"{{dispenserId}}",
+								"status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "is open",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"status\": \"open\",\n  \"updated_at\": null\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/dispenser/{{dispenserId}}/status",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dispenser",
+										"{{dispenserId}}",
+										"status"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 11 Mar 2023 17:31:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "sameorigin"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"Dispenser is already open\""
+						},
+						{
+							"name": "is close",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"status\": \"close\",\n  \"updated_at\": null\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/dispenser/{{dispenserId}}/status",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dispenser",
+										"{{dispenserId}}",
+										"status"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 11 Mar 2023 17:34:05 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "sameorigin"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"Dispenser is already close\""
+						},
+						{
+							"name": "Update dispenser",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"status\": \"open\",\n  \"updated_at\": null\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/dispenser/{{dispenserId}}/status",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dispenser",
+										"{{dispenserId}}",
+										"status"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 11 Mar 2023 17:34:40 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "sameorigin"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"open\",\n    \"updated_at\": \"2023-03-11T18:34:41+01:00\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "spending",
+			"item": [
+				{
+					"name": "spending",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"dispenserId = pm.environment.get('dispenserId');\r",
+									"\r",
+									"pm.environment.set('dispenserId', dispenserId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/dispenser/{{dispenserId}}/spending",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"dispenser",
+								"{{dispenserId}}",
+								"spending"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "amount and usage",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/dispenser/{{dispenserId}}/spending",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"dispenser",
+										"{{dispenserId}}",
+										"spending"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 11 Mar 2023 17:34:52 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "sameorigin"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"amount\": 20.79805,\n    \"usages\": [\n        {\n            \"opened_at\": \"2023-03-11T18:33:37+01:00\",\n            \"closed_at\": \"2023-03-11T18:33:50+01:00\",\n            \"flow_volume\": 0.0653,\n            \"total_spent\": 10.399025\n        },\n        {\n            \"opened_at\": \"2023-03-11T18:34:41+01:00\",\n            \"closed_at\": null,\n            \"flow_volume\": 0.0653,\n            \"total_spent\": 10.399025\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dummy request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"dispenserId = pm.environment.get('dispenserId');\r",
+							"\r",
+							"pm.environment.set('dispenserId', dispenserId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/dispenser/{{dispenserId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"dispenser",
+						"{{dispenserId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
