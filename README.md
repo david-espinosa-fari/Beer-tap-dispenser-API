@@ -13,7 +13,6 @@ under `webServer/App/src` live the code, this is separated by "modules", in turn
 
         git clone https://github.com/david-espinosa-fari/Beer-tap-dispenser-API.git
         cd Beer-tap-dispenser-API/
-        cp .env.dist .env
   * After previews command you have several options
     * If you want to use and install your own web server the app lives under folder `webServer/App`, and point your server to /var/www/public in your configuration. All request must pass through index.php
     This file is an example of virtual host `webServer/config/apache/vhosts/pvportal.conf`. Under webServer/App do `composer install` to install 3rd party software dependencies. [composer](https://getcomposer.org/download/)
@@ -21,7 +20,8 @@ under `webServer/App/src` live the code, this is separated by "modules", in turn
     * I recommend the following
       1.	Install [docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/)
       2. on your console under `Beer-tap-dispenser-API/` folder do
-            
+
+               cp .env.dist .env
                docker-compose up -d --build
       3. When the process are finish you can do some cool stuff request
          1. curl --location 'http://localhost/dispenser' \
@@ -38,7 +38,7 @@ Test lives under `webServer/App/tests` and renders the folder hierarchy from src
 #### Coverage Statistic
 ![img.png](img/coverage.png)
 ![img_1.png](img/img_1.png)
-You can find the entire statistics under `webServer/App/public/cover/index.html`
+You can find the entire statistics under webServer/App/public/cover/ folder, open `webServer/App/public/cover/index.html` with your favor explorer(Mozilla, Chrome).
 #### Running tests
 The test are separated by nature, related to Integration or unitary to favor "pipelines"
     
@@ -51,3 +51,9 @@ The test are separated by nature, related to Integration or unitary to favor "pi
 * Running integration test
 
       docker exec -i app php vendor/bin/phpunit --group Integration --testdox
+
+#### Next steps
+* Document the Api with Openapi
+* Publish docker container
+* Develop pipelines to CI and CD
+* Deploy anywhere
