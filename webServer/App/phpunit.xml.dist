@@ -7,12 +7,7 @@
          colors="true"
          bootstrap="tests/bootstrap.php"
          convertDeprecationsToExceptions="false"
-         verbose="true"
-         enforceTimeLimit="true"
-         timeoutForSmallTests="1"
-         timeoutForMediumTests="20"
-         timeoutForLargeTests="35"
-         defaultTimeLimit="20"
+         testdox="true"
 >
     <php>
         <ini name="display_errors" value="1" />

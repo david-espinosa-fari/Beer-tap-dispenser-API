@@ -10,9 +10,5 @@ You can find the entire stadistics in
 ## How to run test
 enter in the container
 
-    docker exec -it app bash
-
-and hit 
-    
-    phpunit --testdox --verbose
+    docker exec -i app php vendor/bin/phpunit --testdox
 
